@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Homework</title>
+</head>
+<body>
+  <div id="app">
+    <div class="card">
+      <h2>Товари в наявності: {{ availableProducts }}</h2>
+      <h2>Товари в кошику: {{ cartProducts }}</h2>
+      <button @click="addToCart" v-if="availableProducts > 0">Додати в кошик</button>
+      <button @click="removeFromCart" v-if="cartProducts > 0">Прибрати з кошика</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        availableProducts: 5, 
+        cartProducts: 0
+      },
+      methods: {
+        addToCart: function() {
+          if (this.availableProducts > 0) {
+            this.availableProducts--;
+            this.cartProducts++;
+          }
+        },
+        removeFromCart: function() {
+          if (this.cartProducts > 0) {
+            this.availableProducts++;
+            this.cartProducts--;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
